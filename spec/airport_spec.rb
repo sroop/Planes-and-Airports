@@ -32,6 +32,18 @@ describe "Airport" do
 			expect(heathrow.planes.count).to eq(1)
 		end
 
+		it 'releases a plane when a plane takes-off' do
+			heathrow = Airport.new
+			plane = double :plane
+			expect(heathrow.planes.count).to eq(0)
+			expect(plane).to receive(:land)
+			heathrow.receive(plane)
+			expect(heathrow.planes.count).to eq(1)
+			expect(plane).to receive(:take_off)
+			heathrow.release(plane)
+			expect(heathrow.planes.count).to eq(0)
+		end
+
 	end
 
 end
