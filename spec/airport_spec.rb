@@ -44,6 +44,16 @@ describe "Airport" do
 			expect(heathrow.planes.count).to eq(0)
 		end
 
+		it 'raises an error if a plane tries to land and the airport is at full capacity' do
+			heathrow = Airport.new
+			plane = double :plane
+			expect(heathrow.planes.count).to eq(0)
+			(heathrow.capacity).times { expect(plane).to receive (:land) }
+			(heathrow.capacity).times { heathrow.receive(plane) }
+			expect(heathrow.planes.count).to eq(heathrow.capacity)
+      		expect{ (heathrow.receive(plane)) }.to raise_error(RuntimeError)
+		end
+
 	end
 
 end

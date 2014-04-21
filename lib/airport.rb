@@ -13,6 +13,7 @@ class Airport
 	end
 
 	def receive(plane)
+		raise "Airport is full! Plane cannot land here." if planes.count == capacity
 		plane.land
     	@planes << plane
 	end
