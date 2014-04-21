@@ -1,7 +1,12 @@
+require_relative './weather'
+
 class Plane
+
+	include Weather
 
 	def initialize
 		@flying = true
+		weather
 	end
 
 	def flying?
@@ -17,5 +22,5 @@ class Plane
 		raise "Plane is already flying, idiot!" if @flying
 		@flying = true
 	end
-	
+
 end

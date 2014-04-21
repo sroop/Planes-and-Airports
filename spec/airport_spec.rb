@@ -1,4 +1,5 @@
 require 'airport'
+require 'weather'
 
 describe "Airport" do
 
@@ -80,7 +81,7 @@ describe "Airport" do
 			expect{ (heathrow.release(plane)) }.to raise_error(RuntimeError)
 		end
 
-		# it 'plane can take-off if weather is sunny' do
+		# it 'plane cannot land if weather is sunny' do
 
 		# end
 

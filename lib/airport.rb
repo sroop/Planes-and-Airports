@@ -1,4 +1,8 @@
+require_relative './weather'
+
 class Airport
+
+	include Weather
 
 	def initialize
 		planes
@@ -12,11 +16,6 @@ class Airport
 
 	def capacity
 		@default_capacity = 10
-	end
-
-	def weather
-		weather_conditions = ["Sunny", "Sunny", "Sunny", "Stormy", "Sunny"]
-		@weather = weather_conditions.sample
 	end
 
 	def receive(plane)
