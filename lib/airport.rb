@@ -15,7 +15,7 @@ class Airport
 	end
 
 	def capacity
-		@default_capacity = 10
+		@capacity = 10
 	end
 
 	def receive(plane)

@@ -16,8 +16,8 @@ describe "Airport" do
 		end
 
 		it 'has a capacity to hold 10 planes' do
-			@default_capacity = 10
-      		expect(heathrow.capacity).to eq(@default_capacity)
+			@capacity = 10
+      		expect(heathrow.capacity).to eq(@capacity)
 		end
 
 	end
@@ -72,10 +72,10 @@ describe "Airport" do
 
 		it 'a plane cannot take-off if the weather is stormy' do
 			plane = double :plane
+			heathrow.stub(:weather).and_return("Sunny")
 			expect(plane).to receive(:land)
 			heathrow.receive(plane)
 			heathrow.stub(:weather).and_return("Stormy")
-			expect(heathrow.weather).to eq("Stormy")
 			expect{ (heathrow.release(plane)) }.to raise_error(RuntimeError)
 		end
 
