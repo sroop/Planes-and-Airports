@@ -1,5 +1,5 @@
 require 'plane'
-require 'weather'
+# require 'weather'
 
 describe "Plane" do
 	

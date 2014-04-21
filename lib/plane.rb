@@ -1,12 +1,12 @@
-require_relative './weather'
+# require_relative './weather'
 
 class Plane
 
-	include Weather
+	# include Weather
 
 	def initialize
 		@flying = true
-		weather
+		# weather
 	end
 
 	def flying?
