@@ -14,12 +14,19 @@ describe "Plane" do
 		end
 	end
 
-	context "taking-off, flying and landing" do
+	context "landing and taking off:" do
 		
 		it 'can land' do
 			boeing = Plane.new
-			boeing.landing
+			boeing.land
 			expect(boeing).to_not be_flying
+		end
+
+		it 'can take-off' do
+			boeing = Plane.new
+			boeing.land
+			boeing.take_off
+			expect(boeing).to be_flying
 		end
 
 	end
