@@ -21,4 +21,17 @@ describe "Airport" do
 
 	end
 
+	context "Control Flow:" do
+		
+		it 'receives a plane when a plane lands' do
+			heathrow = Airport.new
+			plane = double :plane
+			expect(heathrow.planes.count).to eq(0)
+			expect(plane).to receive(:land)
+			heathrow.receive(plane)
+			expect(heathrow.planes.count).to eq(1)
+		end
+
+	end
+
 end

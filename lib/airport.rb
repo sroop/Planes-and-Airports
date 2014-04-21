@@ -5,10 +5,15 @@ class Airport
 	end
 
 	def planes
-		@planes = []
+		@planes ||= []
 	end
 
 	def capacity
 		@default_capacity = 10
+	end
+
+	def receive(plane)
+		plane.land
+    	@planes << plane
 	end
 end
