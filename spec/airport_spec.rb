@@ -54,6 +54,14 @@ describe "Airport" do
       		expect{ (heathrow.receive(plane)) }.to raise_error(RuntimeError)
 		end
 
+		it 'raises an error if a plane tries to take off from an airport is it not in' do
+			heathrow = Airport.new
+			plane = double :plane
+			expect{ (heathrow.release(plane)) }.to raise_error(RuntimeError)
+
+
+		end
+
 	end
 
 end

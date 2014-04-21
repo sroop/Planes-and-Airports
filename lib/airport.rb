@@ -19,6 +19,7 @@ class Airport
 	end
 
 	def release(plane)
+		raise "Error! This plane is not in this airport." if !planes.include?(plane)
 		plane.take_off
 		@planes.delete(plane)
 	end
