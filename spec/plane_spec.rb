@@ -10,7 +10,7 @@ describe "Plane" do
 
 		it 'will be flying' do
 			boeing = Plane.new
-			expect(boeing).to be_flying
+			expect(boeing.status).to eq("flying")
 		end
 	end
 
@@ -19,14 +19,14 @@ describe "Plane" do
 		it 'can land' do
 			boeing = Plane.new
 			boeing.land
-			expect(boeing).to_not be_flying
+			expect(boeing.status).to eq("landed")
 		end
 
 		it 'can take-off' do
 			boeing = Plane.new
 			boeing.land
 			boeing.take_off
-			expect(boeing).to be_flying
+			expect(boeing.status).to eq("flying")
 		end
 
 	end
@@ -36,13 +36,13 @@ describe "Plane" do
 		it 'cannot land when it is already not flying' do
 			boeing = Plane.new
 			boeing.land
-			expect(boeing).to_not be_flying
+			expect(boeing.status).to eq("landed")
 			expect{ (boeing.land) }.to raise_error(RuntimeError)
 		end
 
 		it 'cannot take-off when it is already flying' do
 			boeing = Plane.new
-			expect(boeing).to be_flying
+			expect(boeing.status).to eq("flying")
 			expect { (boeing.take_off) }.to raise_error(RuntimeError)			
 		end
 

@@ -1,21 +1,21 @@
 class Plane
 
 	def initialize
-		@flying = true
+		@status = "flying"
 	end
 
-	def flying?
-		@flying
+	def status
+		@status
 	end
 
 	def land
-		raise "Plane has already landed, idiot!" if !@flying
-		@flying = false
+		raise "Plane has already landed, idiot!" if @status == "landed"
+		@status = "landed"
 	end
 
 	def take_off
-		raise "Plane is already flying, idiot!" if @flying
-		@flying = true
+		raise "Plane is already flying, idiot!" if @status == "flying"
+		@status = "flying"
 	end
 
 end
