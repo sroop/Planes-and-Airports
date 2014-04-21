@@ -27,7 +27,7 @@ class Airport
 
 	def release(plane)
 		raise "Stormy weather conditions! Plane cannot take-off right now. Please try again when the weather improves." if weather == "Stormy"
-		raise "Error! This plane is not in this airport." if !planes.include?(plane)
+		raise "Error! This plane isn't in this airport..." if !planes.include?(plane)
 		plane.take_off
 		@planes.delete(plane)
 	end
