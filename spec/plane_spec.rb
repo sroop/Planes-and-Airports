@@ -14,7 +14,7 @@ describe "Plane" do
 		end
 	end
 
-	context "Landing and Take-off:" do
+	context "Basic Landing and Take-off:" do
 		
 		it 'can land' do
 			boeing = Plane.new
@@ -47,5 +47,12 @@ describe "Plane" do
 		end
 
 	end
+		
+		# it 'raises an error if a plane is flying and tries to land without going to an airport' do
+		# 	heathrow = Airport.new
+		# 	plane = double :plane
+		# 	expect(plane).to receive(:land)
+		# 	expect{ (plane.land) }.to raise_error(RuntimeError)
+		# end
 
 end

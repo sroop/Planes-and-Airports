@@ -1,30 +1,37 @@
 require 'airport'
 
 describe "Airport" do
+
+	let(:heathrow) { Airport.new }
 	
 	context "Initialization:" do
 
-		it 'needs a name' do
+		before do
+        	heathrow.stub(:weather).and_return("Stormy")
+      	end
+
+		it 'has a name' do
 			heathrow = Airport.new
 		end
 
 		it 'has no planes' do
-			heathrow = Airport.new
 			expect(heathrow.planes.count).to eq(0)
 		end
 
 		it 'has a capacity to hold 10 planes' do
-			heathrow = Airport.new
 			@default_capacity = 10
       		expect(heathrow.capacity).to eq(@default_capacity)
 		end
 
+		it 'has stormy or sunny weather conditions (set to stormy for testing purposes)' do
+      		expect(heathrow.weather).to eq("Stormy")
+      	end
+
 	end
 
-	context "Control Flow:" do
+	context "Basic Control Flow:" do
 		
 		it 'receives a plane when a plane lands' do
-			heathrow = Airport.new
 			plane = double :plane
 			expect(heathrow.planes.count).to eq(0)
 			expect(plane).to receive(:land)
@@ -33,7 +40,6 @@ describe "Airport" do
 		end
 
 		it 'releases a plane when a plane takes-off' do
-			heathrow = Airport.new
 			plane = double :plane
 			expect(heathrow.planes.count).to eq(0)
 			expect(plane).to receive(:land)
@@ -45,7 +51,6 @@ describe "Airport" do
 		end
 
 		it 'raises an error if a plane tries to land and the airport is at full capacity' do
-			heathrow = Airport.new
 			plane = double :plane
 			expect(heathrow.planes.count).to eq(0)
 			(heathrow.capacity).times { expect(plane).to receive (:land) }
@@ -54,13 +59,30 @@ describe "Airport" do
       		expect{ (heathrow.receive(plane)) }.to raise_error(RuntimeError)
 		end
 
-		it 'raises an error if a plane tries to take off from an airport is it not in' do
-			heathrow = Airport.new
+		it 'raises an error if a plane tries to take off from an airport it is not in' do
 			plane = double :plane
 			expect{ (heathrow.release(plane)) }.to raise_error(RuntimeError)
-
-
 		end
+
+	end
+
+	context "Control Flow based on weather conditions:" do
+		
+		before do
+        	heathrow.stub(:weather).and_return("Stormy")
+      	end
+
+		it 'a plane cannot take-off if the weather is stormy' do
+			plane = double :plane
+			expect(plane).to receive(:land)
+			heathrow.receive(plane)
+			expect(heathrow.weather).to eq("Stormy")
+			expect{ (heathrow.release(plane)) }.to raise_error(RuntimeError)
+		end
+
+		# it 'plane can take-off if weather is sunny' do
+
+		# end
 
 	end
 

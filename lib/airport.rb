@@ -1,7 +1,9 @@
 class Airport
-	def initialization
+
+	def initialize
 		planes
 		capacity
+		weather
 	end
 
 	def planes
@@ -12,6 +14,11 @@ class Airport
 		@default_capacity = 10
 	end
 
+	def weather
+		weather_conditions = ["Sunny", "Sunny", "Sunny", "Stormy", "Sunny"]
+		@weather = weather_conditions.sample
+	end
+
 	def receive(plane)
 		raise "Airport is full! Plane cannot land here." if planes.count == capacity
 		plane.land
@@ -19,8 +26,10 @@ class Airport
 	end
 
 	def release(plane)
+		raise "Story weather conditions! Plane cannot take-off until conditions improve." if weather == "Stormy"
 		raise "Error! This plane is not in this airport." if !planes.include?(plane)
 		plane.take_off
 		@planes.delete(plane)
 	end
+
 end

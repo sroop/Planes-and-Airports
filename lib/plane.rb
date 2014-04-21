@@ -17,4 +17,5 @@ class Plane
 		raise "Plane is already flying, idiot!" if @flying
 		@flying = true
 	end
+	
 end
