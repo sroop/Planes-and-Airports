@@ -4,7 +4,9 @@ class Airport
 
 	include Weather
 
+
 	def initialize
+		# these do nothing!!!
 		planes
 		capacity
 		weather
@@ -18,6 +20,8 @@ class Airport
 		@capacity = 10
 	end
 
+	# fix your indentation
+	# think about using a helper method
 	def receive(plane)
 		raise "Stormy weather conditions! Plane cannot land here right now. Please try again when the weather improves." if weather == "Stormy"
 		raise "Airport is full! Plane cannot land here." if planes.count == capacity
